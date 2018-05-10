@@ -7,6 +7,7 @@ package automationsystem;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,11 +28,7 @@ public class Student {
 
     }
     
-    // map'e   
-    static void addStudent(Student stu){
-        School.allStudent.put(stu.CardNumber , stu);
-    }
-    
+  
    
 
     public void addCourse(Course code) {
@@ -50,6 +47,7 @@ public class Student {
 
         return StudentNumber;
 
+       
     }
 
     public boolean equals(Object x) {

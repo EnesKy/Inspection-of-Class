@@ -6,6 +6,7 @@
 package automationsystem;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -18,16 +19,45 @@ public class School{
    public static Map<String, Student> allStudent = new TreeMap<>();
    
    
-   
-    public ArrayList<Student> getStudentByCourse(Course c){
+    public ArrayList<Student> getStudentByCourse(Course c , Date studentArrive ,Date studentArriveErken, Date studentArriveGec){
+        
         ArrayList<Student> temp = new ArrayList<Student>();
+        ArrayList<Student> dersteVarOlanOgrenciler = new ArrayList<Student>();
         for (Student s:School.allStudent.values()) {
+            
             if (s.courses.contains(c)) {
                 temp.add(s);
             }
         }
+            for (int i = 0; i < temp.size(); i++) { 
+                                       // rfid den gelen deger
+                if(temp.get(i).CardNumber == "D50AB80E69"){
+                     if ((c.time.compareTo(studentArrive) > 0 && studentArrive.compareTo(studentArriveErken) >=0) || 
+                             (c.time.compareTo(studentArrive) <= 0 && studentArriveGec.compareTo(studentArrive) >= 0) ) {
+      
+                    System.out.println("Öğrenci ders saatinde geldi. Derste var");
+                    
+                     dersteVarOlanOgrenciler.add(temp.get(i));
+      
+                    } else{
+                         System.out.println("Ogrencı derste yok");
+                     }
+                   
+                    
+                }  
+            }
         
-        return temp;
+        return dersteVarOlanOgrenciler;
  
     }
+    
+    
+      // map'e   
+     void addStudent(Student stu){
+        School.allStudent.put(stu.CardNumber , stu);
+    }
+    
+    
+    
+    
 }

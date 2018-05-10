@@ -6,14 +6,17 @@
 package automationsystem;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
  * @author yigido
  */
 public class Inspection {
+    String courseCode;
     
-     ArrayList <Course> courses = new ArrayList<>();
-      ArrayList <Student> students = new ArrayList<>();
-      
+    Date hangiGunYoklamaAlindiysa;
+    
+    List<Student> dersteOlanOgrenciler = new ArrayList<>();
 }
