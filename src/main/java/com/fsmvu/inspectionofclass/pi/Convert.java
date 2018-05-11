@@ -1,4 +1,4 @@
-package readingFromRC522;
+package com.fsmvu.inspectionofclass.pi;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

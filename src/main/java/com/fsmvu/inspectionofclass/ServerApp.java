@@ -9,8 +9,7 @@ import com.fsmvu.inspectionofclass.http.Server;;
  * 
  *
  */
-public class App 
-{
+public class ServerApp {
     public static void main( String[] args )
     {
         try{

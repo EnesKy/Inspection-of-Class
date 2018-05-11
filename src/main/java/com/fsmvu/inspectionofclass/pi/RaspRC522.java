@@ -1,4 +1,5 @@
-package readingFromRC522;
+package com.fsmvu.inspectionofclass.pi;
+
 import com.pi4j.wiringpi.Gpio;
 import com.pi4j.wiringpi.Spi;
 /**

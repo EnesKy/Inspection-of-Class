@@ -1,4 +1,4 @@
-package readingFromRC522;
+package com.fsmvu.inspectionofclass.pi;
 
 /**
  * Created by Liang on 2016/3/7.
