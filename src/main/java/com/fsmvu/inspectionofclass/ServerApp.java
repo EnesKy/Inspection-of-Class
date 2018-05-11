@@ -10,18 +10,16 @@ import com.fsmvu.inspectionofclass.http.RFIDServer;
  *
  */
 public class ServerApp {
-    public static void main( String[] args )
-    {
+    public static void main( String[] args ) {
         try{
             RFIDServer.getInstance()
             .build(16290)
-            .map("/test", new RFIDHandler())
+            .map("/", new RFIDHandler())
             .start();
+
         }catch(IOException ex) {
             System.err.println("Error occured " + ex.getMessage());
         }
-        
-        
         
     }
 }

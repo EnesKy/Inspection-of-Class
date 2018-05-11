@@ -14,7 +14,7 @@ public class RFIDClient {
     }
 
     /** returns  */
-    public static int request(String courseCode, String cardNo) {
+    public static int request(String courseCode, String cardNo) throws IOException{
         HttpURLConnection connection = null;
         
         try{
@@ -32,9 +32,6 @@ public class RFIDClient {
             
             return connection.getResponseCode();
         } catch(MalformedURLException ex) {
-            ex.printStackTrace();
-            return 400;
-        } catch(IOException ex) {
             ex.printStackTrace();
             return 400;
         } finally {

@@ -8,6 +8,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
+import java.util.Set;
+import java.util.HashSet;
 
 /**
  *
@@ -22,12 +25,12 @@ public class Course {
     int offsetBefore = 0;
     int offsetAfter = 0;
     
-    Map<Date, List<Student>> inspections; // buradaki date , o course un saatini ve gün/ay/yıl bilgisini içericek
+    Map<Date, Set<Student>> inspections = new HashMap<>(); // buradaki date , o course un saatini ve gün/ay/yıl bilgisini içericek
     //verilen saatteki -> dersteOlanOgrenciler
 
     public List<String> classrooms = new ArrayList<>();
    
-    public Course(String className, String coursecode, int hour, int minute, int offsetBefore, int offsetAfter){
+    public Course(String coursecode, String className, int hour, int minute, int offsetBefore, int offsetAfter){
         name  = className;
         code = coursecode; 
     
@@ -77,9 +80,9 @@ public class Course {
         long currentMillis = currentTime.getTime();
 
         if(currentMillis > lowerBound && currentMillis < upperBound) {
-            List<Student> i = inspections.get(inspectionDate);
-            if(i != null) {
-                i = new ArrayList<>();
+            Set<Student> i = inspections.get(inspectionDate);
+            if(i == null) {
+                i = new HashSet<>();
                 inspections.put(inspectionDate, i);
             }
             i.add(student);
