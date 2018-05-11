@@ -1,9 +1,7 @@
 package com.fsmvu.inspectionofclass.automation;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -11,38 +9,27 @@ import java.util.List;
  */
 public class Student {
 
-    String StudentName;
-    public ArrayList<Course> courses = new ArrayList<>();
-    int StudentNumber;
-    public String CardNumber; // enesten gelen değer
+    int studentNumber;
+    String studentName;
+    public String cardNumber; // enesten gelen değer, RFID cardNumber
+    public List<Course> courses = new ArrayList<>();
 
     public Student(String sn, int snu, String cn) {
-        StudentName = sn;
-        StudentNumber = snu;
-        CardNumber = cn;
-
+        studentName = sn;
+        studentNumber = snu;
+        cardNumber = cn;
     }
     
-  
-   
-
     public void addCourse(Course code) {
-
         courses.add(code);
-
     }
 
     public String toString() {
-
-        return StudentName;
-
+        return studentName;
     }
 
     public int hashCode() {
-
-        return StudentNumber;
-
-       
+        return studentNumber;
     }
 
     public boolean equals(Object x) {
@@ -50,7 +37,7 @@ public class Student {
             return false;
         }
         Student s = (Student) x;
-        return (s.StudentNumber == StudentNumber);
+        return (s.studentNumber == studentNumber);
     }
 
 }

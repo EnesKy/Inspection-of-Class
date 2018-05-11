@@ -14,7 +14,7 @@ public class ReadRFID {
             byte tagid[] = new byte[5];
 
             rc522.Select_MirareOne(tagid);
-            strUID = Convert.bytesToHex(tagid);
+            strUID = RFIDConverter.bytesToHex(tagid);
             if (!strUID.toString().equals("0000000000")) {
                 System.out.println("Kart okunuyor...");
                 System.out.println("Kart değeri : " + strUID.toString());

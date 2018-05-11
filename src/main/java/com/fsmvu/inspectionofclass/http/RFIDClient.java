@@ -7,18 +7,18 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class RFIDClient {
-    public static String BASE_URL = "localhost://";
+    public static String BASE_URL = "";
 
     private RFIDClient () {
     
     }
 
     /** returns  */
-    static int request(String courseCode, String cardNo) {
+    public static int request(String courseCode, String cardNo) {
         HttpURLConnection connection = null;
+        
         try{
-            String params = String.format("UTF-8", 
-                            "inspect?course=%s&card=%s", courseCode, cardNo);
+            String params = String.format("inspect?course=%s&card=%s", courseCode, cardNo);
 
             URL url = new URL(BASE_URL + params);
             connection = (HttpURLConnection) url.openConnection();  
@@ -28,7 +28,7 @@ public class RFIDClient {
             byte[] rawData = new byte[in.available()];
             in.read(rawData);
             /** if responds needs */
-            String respond = new String(rawData);
+            //String respond = new String(rawData);
             
             return connection.getResponseCode();
         } catch(MalformedURLException ex) {

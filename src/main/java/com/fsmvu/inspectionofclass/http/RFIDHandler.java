@@ -4,6 +4,9 @@ import java.util.Map;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import com.fsmvu.inspectionofclass.automation.Course;
+import com.fsmvu.inspectionofclass.automation.School;
+import com.fsmvu.inspectionofclass.automation.Student;
 import com.fsmvu.inspectionofclass.util.QueryParser;
 import com.sun.net.httpserver.*;
 
@@ -17,12 +20,31 @@ public class RFIDHandler implements HttpHandler {
 	public void handle(HttpExchange response) throws IOException {
         String query = response.getRequestURI().getQuery();
         Map<String, String> parameters = QueryParser.parse(query);
-        
-        String responsea = "This is the response";
-            response.sendResponseHeaders(200, responsea.length());
-            OutputStream os = response.getResponseBody();
-            os.write(responsea.getBytes());
-            os.close();
+
+        String paramCourse = parameters.get("course");
+        String paramCard = parameters.get("card");
+
+        if(paramCourse != null || paramCard != null) throw new RuntimeException("Bad request");
+
+        School school = RFIDServer.getInstance().school;
+        Student student = school.getStudentByCard(paramCard);
+        int responseCode = 400;
+        for (Course course : student.courses) {
+            if(course.code.equals(paramCourse)) {
+                try {
+                    boolean result = course.inspect(student);
+                    if(result) responseCode = 200;    
+                } catch (Exception e) {
+                    responseCode = 400;
+                }
+            }
+        }
+
+        String responseText = "Responded";
+        response.sendResponseHeaders(responseCode, responseText.length());
+        OutputStream os = response.getResponseBody();
+        os.write(responseText.getBytes());
+        os.close();
         // TODO do here
     }
     

@@ -7,8 +7,7 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.sql.Types;
 
-public class Convert
-{
+public class RFIDConverter {
 	public static Object String2Object(String strValue,int type)
 	{
 		Object value=null;

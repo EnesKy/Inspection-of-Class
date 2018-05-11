@@ -1,7 +1,5 @@
 package com.fsmvu.inspectionofclass.automation;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -11,48 +9,26 @@ import java.util.TreeMap;
  */
 public class School{
     
-   public static Map<String, Student> allStudent = new TreeMap<>();
-   
-   
-    public ArrayList<Student> getStudentByCourse(Course c , Date studentArrive ,Date studentArriveErken, Date studentArriveGec){
-        
-        ArrayList<Student> temp = new ArrayList<Student>();
-        ArrayList<Student> dersteVarOlanOgrenciler = new ArrayList<Student>();
-        for (Student s:School.allStudent.values()) {
-            
-            if (s.courses.contains(c)) {
-                temp.add(s);
-            }
+    public Map<String, Student> students = new TreeMap<>();
+    public Map<String, Course> courses = new TreeMap<>();    
+
+    public Student getStudentById(String id) {
+        return students.get(id);
+    }
+
+    public Student getStudentByCard(String card) {
+        for (Student student : students.values()) {
+            if(student.cardNumber.equals(card)) return student;
         }
-            for (int i = 0; i < temp.size(); i++) { 
-                                       // rfid den gelen deger
-                if(temp.get(i).CardNumber == "D50AB80E69"){
-                     if ((c.time.compareTo(studentArrive) > 0 && studentArrive.compareTo(studentArriveErken) >=0) || 
-                             (c.time.compareTo(studentArrive) <= 0 && studentArriveGec.compareTo(studentArrive) >= 0) ) {
-      
-                    System.out.println("Öğrenci ders saatinde geldi. Derste var");
-                    
-                     dersteVarOlanOgrenciler.add(temp.get(i));
-      
-                    } else{
-                         System.out.println("Ogrencı derste yok");
-                     }
-                   
-                    
-                }  
-            }
-        
-        return dersteVarOlanOgrenciler;
- 
+        return null;
     }
-    
-    
-      // map'e   
-     void addStudent(Student stu){
-        School.allStudent.put(stu.CardNumber , stu);
+
+    public void addStudent(Student s) {
+        students.put(s.cardNumber, s);
     }
-    
-    
-    
+
+    public void addCourse(Course c) {
+        courses.put(c.code, c);
+    }
     
 }
